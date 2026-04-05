@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Resolve model_id by technical name so upgrade works even if ir.model.data xmlids are missing. -->
+    <record id="access_pickup_request_user" model="ir.model.access">
+        <field name="name">pickup.request.user</field>
+        <field name="model_id" model="ir.model" search="[('model', '=', 'pickup.request')]"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record id="access_agency_request_user" model="ir.model.access">
+        <field name="name">agency.request.user</field>
+        <field name="model_id" model="ir.model" search="[('model', '=', 'agency.request')]"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record id="access_warehouse_stock_user" model="ir.model.access">
+        <field name="name">warehouse.stock.user</field>
+        <field name="model_id" model="ir.model" search="[('model', '=', 'warehouse.stock')]"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record id="access_recycle_product_category_user" model="ir.model.access">
+        <field name="name">recycle.product.category.user</field>
+        <field name="model_id" model="ir.model" search="[('model', '=', 'recycle.product.category')]"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record id="access_recycle_seller_product_user" model="ir.model.access">
+        <field name="name">recycle.seller.product.user</field>
+        <field name="model_id" model="ir.model" search="[('model', '=', 'recycle.seller.product')]"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record id="access_buyer_request_user" model="ir.model.access">
+        <field name="name">buyer.request.user</field>
+        <field name="model_id" model="ir.model" search="[('model', '=', 'buyer.request')]"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record id="access_recycle_dashboard_user" model="ir.model.access">
+        <field name="name">recycle.dashboard.user</field>
+        <field name="model_id" model="ir.model" search="[('model', '=', 'recycle.dashboard')]"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+</odoo>

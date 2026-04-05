@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_recycle_root" name="CircuFlow ERP" sequence="10"/>
+
+    <menuitem id="menu_recycle_dashboard" name="Dashboard" parent="menu_recycle_root" action="action_recycle_dashboard" sequence="5"/>
+
+    <menuitem id="menu_pickup_request" name="Pickup Requests" parent="menu_recycle_root" action="action_pickup_request" sequence="10"/>
+
+    <menuitem id="menu_agency_request" name="Agency Requests" parent="menu_recycle_root" action="action_agency_request" sequence="20"/>
+
+    <menuitem id="menu_warehouse_stock" name="Warehouse Stock" parent="menu_recycle_root" action="action_warehouse_stock" sequence="30"/>
+
+    <menuitem id="menu_seller_product" name="Seller Products" parent="menu_recycle_root" action="action_seller_product" sequence="40"/>
+
+    <menuitem id="menu_buyer_request" name="Buyers" parent="menu_recycle_root" action="action_buyer_request" sequence="50"/>
+</odoo>

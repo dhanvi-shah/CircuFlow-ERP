@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Load before menus and views so ir.model.data xmlids always exist for menuitem action="...". -->
+    <record id="action_recycle_dashboard" model="ir.actions.act_window">
+        <field name="name">CircuFlow Dashboard</field>
+        <field name="res_model">recycle.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+    <record id="action_pickup_request" model="ir.actions.act_window">
+        <field name="name">Pickup Requests</field>
+        <field name="res_model">pickup.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Register a new pickup request from a donor.</p>
+        </field>
+    </record>
+    <record id="action_agency_request" model="ir.actions.act_window">
+        <field name="name">Agency Requests</field>
+        <field name="res_model">agency.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a request from an agency for recyclable materials.</p>
+        </field>
+    </record>
+    <record id="action_warehouse_stock" model="ir.actions.act_window">
+        <field name="name">Warehouse Stock</field>
+        <field name="res_model">warehouse.stock</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add warehouse lines for available recyclable stock.</p>
+        </field>
+    </record>
+    <record id="action_seller_product" model="ir.actions.act_window">
+        <field name="name">Seller Products</field>
+        <field name="res_model">recycle.seller.product</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">List goods offered by producers (including from recycled materials).</p>
+        </field>
+    </record>
+    <record id="action_buyer_request" model="ir.actions.act_window">
+        <field name="name">Buyers</field>
+        <field name="res_model">buyer.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Register a buyer need (e.g. supermarket sourcing).</p>
+        </field>
+    </record>
+</odoo>

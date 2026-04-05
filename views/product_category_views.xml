@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_recycle_product_category_list" model="ir.ui.view">
+        <field name="name">recycle.product.category.list</field>
+        <field name="model">recycle.product.category</field>
+        <field name="arch" type="xml">
+            <list string="Product Categories" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_recycle_product_category_form" model="ir.ui.view">
+        <field name="name">recycle.product.category.form</field>
+        <field name="model">recycle.product.category</field>
+        <field name="arch" type="xml">
+            <form string="Product Category">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

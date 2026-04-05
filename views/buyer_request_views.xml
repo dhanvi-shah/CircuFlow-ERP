@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_buyer_request_list" model="ir.ui.view">
+        <field name="name">buyer.request.list</field>
+        <field name="model">buyer.request</field>
+        <field name="arch" type="xml">
+            <list
+                string="Buyers"
+                decoration-success="state == 'ordered'"
+                decoration-danger="state == 'declined'"
+            >
+                <field name="state" widget="badge" optional="show"/>
+                <field name="buyer_name"/>
+                <field name="product_needed"/>
+                <field name="selected_seller_product_id"/>
+                <field name="quantity"/>
+                <field name="budget"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_buyer_request_form" model="ir.ui.view">
+        <field name="name">buyer.request.form</field>
+        <field name="model">buyer.request</field>
+        <field name="arch" type="xml">
+            <form string="Buyer Request">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,ordered,declined"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Buyer">
+                            <field name="buyer_name"/>
+                            <field name="product_needed"/>
+                        </group>
+                        <group string="Requirements">
+                            <field name="quantity"/>
+                            <field name="budget"/>
+                        </group>
+                    </group>
+                    <group string="Outcome" invisible="state == 'draft'">
+                        <field name="selected_seller_product_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Available seller products" name="marketplace_products">
+                            <field
+                                name="marketplace_seller_product_ids"
+                                nolabel="1"
+                                context="{'buyer_request_id': id}"
+                            >
+                                <list
+                                    create="false"
+                                    delete="false"
+                                    edit="false"
+                                    string="Seller products"
+                                    decoration-success="eco_friendly"
+                                >
+                                    <field name="product_name"/>
+                                    <field name="seller_name"/>
+                                    <field name="price"/>
+                                    <field name="quantity_available" string="In stock"/>
+                                    <field name="eco_friendly" string="Eco" widget="boolean"/>
+                                    <field name="category_ids" widget="many2many_tags" string="Categories"/>
+                                    <button
+                                        name="action_buyer_purchase"
+                                        type="object"
+                                        string="Purchase"
+                                        class="btn-primary"
+                                        invisible="parent.state != 'draft' or quantity_available &lt;= 0"
+                                    />
+                                    <button
+                                        name="action_buyer_decline"
+                                        type="object"
+                                        string="Decline"
+                                        invisible="parent.state != 'draft'"
+                                    />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_buyer_request_search" model="ir.ui.view">
+        <field name="name">buyer.request.search</field>
+        <field name="model">buyer.request</field>
+        <field name="arch" type="xml">
+            <search string="Buyers">
+                <field name="buyer_name"/>
+                <field name="product_needed"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <separator/>
+                <group>
+                    <filter string="Buyer" name="group_buyer" domain="[]" context="{'group_by': 'buyer_name'}"/>
+                    <filter string="Status" name="group_state" domain="[]" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

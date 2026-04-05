@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_agency_request_list" model="ir.ui.view">
+        <field name="name">agency.request.list</field>
+        <field name="model">agency.request</field>
+        <field name="arch" type="xml">
+            <list
+                string="Agency Requests"
+                decoration-success="status == 'fulfilled'"
+                decoration-warning="status == 'requested'"
+                decoration-info="status == 'matching'"
+                decoration-danger="status == 'cancelled'"
+            >
+                <field name="agency_name"/>
+                <field name="waste_type"/>
+                <field name="quantity_required"/>
+                <field name="deadline"/>
+                <field name="status" optional="show"/>
+                <button name="action_find_match" type="object" string="Find Match" class="btn-link" invisible="status in ('fulfilled', 'cancelled')"/>
+                <button name="action_fulfill" type="object" string="Fulfill" class="btn-link" invisible="status in ('fulfilled', 'cancelled')"/>
+                <button name="action_cancel" type="object" string="Cancel" class="btn-link" invisible="status in ('fulfilled', 'cancelled')"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_agency_request_form" model="ir.ui.view">
+        <field name="name">agency.request.form</field>
+        <field name="model">agency.request</field>
+        <field name="arch" type="xml">
+            <form string="Agency Request">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="requested,matching,fulfilled,cancelled"/>
+                    <button name="action_find_match" type="object" string="Find Match" class="oe_highlight" invisible="status in ('fulfilled', 'cancelled')"/>
+                    <button name="action_fulfill" type="object" string="Fulfill" class="oe_highlight" invisible="status in ('fulfilled', 'cancelled')"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="status in ('fulfilled', 'cancelled')"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Agency">
+                            <field name="agency_name"/>
+                            <field name="deadline"/>
+                        </group>
+                        <group string="Need">
+                            <field name="waste_type"/>
+                            <field name="quantity_required"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_agency_request_search" model="ir.ui.view">
+        <field name="name">agency.request.search</field>
+        <field name="model">agency.request</field>
+        <field name="arch" type="xml">
+            <search string="Agency Requests">
+                <field name="agency_name"/>
+                <field name="waste_type"/>
+                <filter string="Requested" name="requested" domain="[('status', '=', 'requested')]"/>
+                <filter string="Matching" name="matching" domain="[('status', '=', 'matching')]"/>
+                <filter string="Fulfilled" name="fulfilled" domain="[('status', '=', 'fulfilled')]"/>
+                <separator/>
+                <group>
+                    <filter string="Status" name="group_status" domain="[]" context="{'group_by': 'status'}"/>
+                    <filter string="Waste Type" name="group_waste" domain="[]" context="{'group_by': 'waste_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>
